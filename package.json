@@ -34,7 +34,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "banderilla",
+  "name": "banderilla-react",
   "author": "Matt Sutkowski",
   "module": "dist/banderilla.esm.js",
   "devDependencies": {
