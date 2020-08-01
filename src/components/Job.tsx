@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
-import { formatDistanceStrict } from 'date-fns'
-import Highlight from 'react-highlight'
-import { AppJob } from '../../@types/app'
-import { Field, FIELDS, Status } from './constants'
-import { PlusIcon } from './PlusIcon'
-import { PlayIcon } from './PlayIcon'
-import { CheckIcon } from './CheckIcon'
-import { Timestamp } from './Timestamp'
+import React, { useState } from 'react';
+import { formatDistanceStrict } from 'date-fns';
+import Highlight from 'react-highlight';
+import { Field, FIELDS, Status } from './constants';
+import { PlusIcon } from './PlusIcon';
+import { PlayIcon } from './PlayIcon';
+import { CheckIcon } from './CheckIcon';
+import { Timestamp } from './Timestamp';
+import { AppJob } from 'types';
 
 type FieldProps = {
-  job: AppJob
-  retryJob: () => Promise<void>
-  delayedJob: () => Promise<void>
-}
+  job: AppJob;
+  retryJob: () => Promise<void>;
+  delayedJob: () => Promise<void>;
+};
 
 const fieldComponents: Record<Field, React.FC<FieldProps>> = {
   id: ({ job }) => <b>#{job.id}</b>,
@@ -44,10 +44,10 @@ const fieldComponents: Record<Field, React.FC<FieldProps>> = {
           <Highlight className="json">
             {JSON.stringify(job.progress, null, 2)}
           </Highlight>
-        )
+        );
       case 'number':
         if (job.progress > 100) {
-          return <div className="progress-wrapper">{job.progress}</div>
+          return <div className="progress-wrapper">{job.progress}</div>;
         }
 
         return (
@@ -62,9 +62,9 @@ const fieldComponents: Record<Field, React.FC<FieldProps>> = {
               %&nbsp;
             </div>
           </div>
-        )
+        );
       default:
-        return <>--</>
+        return <>--</>;
     }
   },
 
@@ -74,7 +74,7 @@ const fieldComponents: Record<Field, React.FC<FieldProps>> = {
     <>
       {formatDistanceStrict(
         Number(job.timestamp || 0) + Number(job.delay || 0),
-        Date.now(),
+        Date.now()
       )}
     </>
   ),
@@ -85,11 +85,12 @@ const fieldComponents: Record<Field, React.FC<FieldProps>> = {
         {job.failedReason || 'NA'}
         <Highlight className="javascript">{job.stacktrace}</Highlight>
       </>
-    )
+    );
   },
 
   data: ({ job }) => {
-    const [showData, toggleData] = useState(false)
+    // eslint-disable-next-line
+    const [showData, toggleData] = useState(false);
 
     return (
       <>
@@ -98,7 +99,7 @@ const fieldComponents: Record<Field, React.FC<FieldProps>> = {
           {showData && JSON.stringify(job.data, null, 2)}
         </Highlight>
       </>
-    )
+    );
   },
 
   opts: ({ job }) => (
@@ -108,7 +109,7 @@ const fieldComponents: Record<Field, React.FC<FieldProps>> = {
   retry: ({ retryJob }) => <button onClick={retryJob}>Retry</button>,
 
   promote: ({ delayedJob }) => <button onClick={delayedJob}>Promote</button>,
-}
+};
 
 export const Job = ({
   job,
@@ -117,16 +118,16 @@ export const Job = ({
   retryJob,
   promoteJob,
 }: {
-  job: AppJob
-  status: Status
-  queueName: string
-  retryJob: (job: AppJob) => () => Promise<void>
-  promoteJob: (job: AppJob) => () => Promise<void>
+  job: AppJob;
+  status: Status;
+  queueName: string;
+  retryJob: (job: AppJob) => () => Promise<void>;
+  promoteJob: (job: AppJob) => () => Promise<void>;
 }) => {
   return (
     <tr>
       {FIELDS[status].map(field => {
-        const Field = fieldComponents[field]
+        const Field = fieldComponents[field];
 
         return (
           <td key={`${queueName}-${job.id}-${field}`}>
@@ -136,8 +137,8 @@ export const Job = ({
               delayedJob={promoteJob(job)}
             />
           </td>
-        )
+        );
       })}
     </tr>
-  )
-}
+  );
+};

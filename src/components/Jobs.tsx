@@ -1,7 +1,7 @@
-import React from 'react'
-import { Status, FIELDS } from './constants'
-import { AppJob, AppQueue } from '../../@types/app'
-import { Job } from './Job'
+import React from 'react';
+import { Status, FIELDS } from './constants';
+import { Job } from './Job';
+import { AppJob, AppQueue } from 'types';
 
 export const Jobs = ({
   retryJob,
@@ -9,13 +9,13 @@ export const Jobs = ({
   queue: { jobs, name },
   status,
 }: {
-  retryJob: (job: AppJob) => () => Promise<void>
-  promoteJob: (job: AppJob) => () => Promise<void>
-  queue: AppQueue
-  status: Status
+  retryJob: (job: AppJob) => () => Promise<void>;
+  promoteJob: (job: AppJob) => () => Promise<void>;
+  queue: AppQueue;
+  status: Status;
 }) => {
   if (!jobs.length) {
-    return <>No jobs with status {status}</>
+    return <>No jobs with status {status}</>;
   }
 
   return (
@@ -40,5 +40,5 @@ export const Jobs = ({
         ))}
       </tbody>
     </table>
-  )
-}
+  );
+};

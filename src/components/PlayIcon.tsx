@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const PlayIcon = () => (
   <svg width={18} style={{ verticalAlign: 'middle' }} viewBox="0 0 14 14">
@@ -7,4 +7,4 @@ export const PlayIcon = () => (
     <line x1="5" y1="5" x2="9" y2="7" stroke="#333" strokeWidth="1" />
     <line x1="9" y1="7" x2="5" y2="9" stroke="#333" strokeWidth="1" />
   </svg>
-)
+);

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import { Queue as QueueElement } from './Queue'
-import { RedisStats } from './RedisStats'
-import { Header } from './Header'
-import { useStore } from './hooks/useStore'
+import { Queue as QueueElement } from './Queue';
+import { RedisStats } from './RedisStats';
+import { Header } from './Header';
+import { useStore } from './hooks/useStore';
 
 export const App = ({ basePath }: { basePath: string }) => {
   const {
@@ -16,7 +16,7 @@ export const App = ({ basePath }: { basePath: string }) => {
     cleanAllDelayed,
     cleanAllFailed,
     cleanAllCompleted,
-  } = useStore(basePath)
+  } = useStore(basePath);
 
   return (
     <>
@@ -50,5 +50,5 @@ export const App = ({ basePath }: { basePath: string }) => {
         )}
       </main>
     </>
-  )
-}
+  );
+};

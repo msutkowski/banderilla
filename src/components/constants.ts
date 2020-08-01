@@ -6,9 +6,9 @@ export const STATUSES = {
   failed: 'failed',
   delayed: 'delayed',
   paused: 'paused',
-}
+};
 
-export type Status = keyof typeof STATUSES
+export type Status = keyof typeof STATUSES;
 
 export type Field =
   | 'attempts'
@@ -21,7 +21,7 @@ export type Field =
   | 'delay'
   | 'failedReason'
   | 'retry'
-  | 'promote'
+  | 'promote';
 
 export const FIELDS: Record<Status, Field[]> = {
   active: ['attempts', 'data', 'id', 'name', 'opts', 'progress', 'timestamps'],
@@ -58,4 +58,4 @@ export const FIELDS: Record<Status, Field[]> = {
   latest: ['attempts', 'data', 'id', 'name', 'opts', 'progress', 'timestamps'],
   paused: ['attempts', 'data', 'id', 'name', 'opts', 'timestamps'],
   waiting: ['data', 'id', 'name', 'opts', 'timestamps'],
-}
+};

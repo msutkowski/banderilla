@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import { STATUSES, Status } from './constants'
-import { AppQueue, AppJob } from '../../@types/app'
-import { Jobs } from './Jobs'
+import { STATUSES, Status } from './constants';
+import { Jobs } from './Jobs';
+import { AppQueue, AppJob } from 'types';
 
 type MenuItemProps = {
-  status: Status
-  count: number
-  onClick: () => void
-  selected: boolean
-}
+  status: Status;
+  count: number;
+  onClick: () => void;
+  selected: boolean;
+};
 
 const MenuItem = ({ status, count, onClick, selected }: MenuItemProps) => (
   <div
@@ -20,20 +20,20 @@ const MenuItem = ({ status, count, onClick, selected }: MenuItemProps) => (
   >
     {status !== 'latest' && <b className="count">{count}</b>} {status}
   </div>
-)
-const ACTIONABLE_STATUSES = ['failed', 'delayed', 'completed']
+);
+const ACTIONABLE_STATUSES = ['failed', 'delayed', 'completed'];
 
 interface QueueActionProps {
-  queue: QueueProps['queue']
-  retryAll: QueueProps['retryAll']
-  cleanAllFailed: QueueProps['cleanAllFailed']
-  cleanAllDelayed: QueueProps['cleanAllDelayed']
-  cleanAllCompleted: QueueProps['cleanAllCompleted']
-  status: Status
+  queue: QueueProps['queue'];
+  retryAll: QueueProps['retryAll'];
+  cleanAllFailed: QueueProps['cleanAllFailed'];
+  cleanAllDelayed: QueueProps['cleanAllDelayed'];
+  cleanAllCompleted: QueueProps['cleanAllCompleted'];
+  status: Status;
 }
 
 const isStatusActionable = (status: Status): boolean =>
-  ACTIONABLE_STATUSES.includes(status)
+  ACTIONABLE_STATUSES.includes(status);
 
 const QueueActions = ({
   status,
@@ -43,7 +43,7 @@ const QueueActions = ({
   cleanAllCompleted,
 }: QueueActionProps) => {
   if (!isStatusActionable(status)) {
-    return <div />
+    return <div />;
   }
 
   return (
@@ -69,24 +69,24 @@ const QueueActions = ({
         </button>
       )}
     </div>
-  )
-}
+  );
+};
 
 interface QueueProps {
-  queue: AppQueue
-  selectedStatus: Status
-  selectStatus: (statuses: Record<string, Status>) => void
-  cleanAllDelayed: () => Promise<void>
-  cleanAllFailed: () => Promise<void>
-  cleanAllCompleted: () => Promise<void>
-  retryAll: () => Promise<void>
-  retryJob: (job: AppJob) => () => Promise<void>
-  promoteJob: (job: AppJob) => () => Promise<void>
+  queue: AppQueue;
+  selectedStatus: Status;
+  selectStatus: (statuses: Record<string, Status>) => void;
+  cleanAllDelayed: () => Promise<void>;
+  cleanAllFailed: () => Promise<void>;
+  cleanAllCompleted: () => Promise<void>;
+  retryAll: () => Promise<void>;
+  retryJob: (job: AppJob) => () => Promise<void>;
+  promoteJob: (job: AppJob) => () => Promise<void>;
 }
 
 // We need to extend so babel doesn't think it's JSX
 const keysOf = <Target extends {}>(target: Target) =>
-  Object.keys(target) as (keyof Target)[]
+  Object.keys(target) as (keyof Target)[];
 
 export const Queue = ({
   cleanAllDelayed,
@@ -131,4 +131,4 @@ export const Queue = ({
       </>
     )}
   </section>
-)
+);

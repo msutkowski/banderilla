@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 
 export const useScrolled = () => {
   const [scrolled, setScrolled] = useState(
-    typeof window === 'undefined' ? false : window.scrollY > 20,
-  )
+    typeof window === 'undefined' ? false : window.scrollY > 20
+  );
 
-  const handleScroll = () => setScrolled(window.scrollY > 20)
+  const handleScroll = () => setScrolled(window.scrollY > 20);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  })
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 
-  return scrolled
-}
+  return scrolled;
+};

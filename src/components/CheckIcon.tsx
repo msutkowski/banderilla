@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const CheckIcon = () => (
   <svg width={18} style={{ verticalAlign: 'middle' }} viewBox="0 0 14 14">
@@ -6,4 +6,4 @@ export const CheckIcon = () => (
 
     <circle cx="7" cy="7" r="2" stroke="#333" strokeWidth="1" fill="none" />
   </svg>
-)
+);

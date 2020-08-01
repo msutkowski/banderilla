@@ -1,16 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-import { useScrolled } from './hooks/useScrolled'
+import { useScrolled } from './hooks/useScrolled';
 
 export const Header = () => {
-  const scrolled = useScrolled()
+  const scrolled = useScrolled();
 
   return (
     <nav
       id="header"
       style={{ boxShadow: scrolled ? '0 3px 3px rgba(0,0,0,0.1)' : 'none' }}
     >
-      <span>🎯 Bull Dashboard</span>
+      <span role="img" aria-label="Bull Dashboard">
+        🎯 Bull Dashboard
+      </span>
     </nav>
-  )
-}
+  );
+};
