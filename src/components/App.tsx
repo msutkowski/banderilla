@@ -5,6 +5,9 @@ import { RedisStats } from './RedisStats';
 import { Header } from './Header';
 import { useStore } from './hooks/useStore';
 
+import '../index.css';
+import '../xcode.css';
+
 export const App = ({ basePath }: { basePath: string }) => {
   const {
     state,

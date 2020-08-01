@@ -17,8 +17,9 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "format": "prettier --write \"src/**/*.ts\" \"**/*.md\"",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook",
+    "update": "npx msw init public"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -52,6 +53,7 @@
     "babel-loader": "^8.1.0",
     "bullmq": "^1.9.0",
     "husky": "^4.2.5",
+    "msw": "^0.20.1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.13.1",
