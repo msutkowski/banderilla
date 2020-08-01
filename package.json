@@ -1,5 +1,8 @@
 {
   "version": "0.1.0",
+  "name": "banderilla-react",
+  "author": "Matt Sutkowski",
+  "repository": "https://github.com/msutkowski/banderilla",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -7,6 +10,7 @@
     "dist",
     "src"
   ],
+  "module": "dist/banderilla.esm.js",
   "engines": {
     "node": ">=10"
   },
@@ -35,9 +39,11 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "banderilla-react",
-  "author": "Matt Sutkowski",
-  "module": "dist/banderilla.esm.js",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@storybook/addon-actions": "^5.3.19",
@@ -53,6 +59,7 @@
     "babel-loader": "^8.1.0",
     "bullmq": "^1.9.0",
     "husky": "^4.2.5",
+    "identity-obj-proxy": "^3.0.0",
     "msw": "^0.20.1",
     "react": "^16.13.1",
     "react-docgen-typescript-loader": "^3.7.2",
