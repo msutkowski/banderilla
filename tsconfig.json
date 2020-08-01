@@ -1,5 +1,6 @@
 {
   "include": ["src"],
+  "exclude": ["*.css"],
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
