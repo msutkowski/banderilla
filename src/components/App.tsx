@@ -8,7 +8,13 @@ import { useStore } from './hooks/useStore';
 import '../index.css';
 import '../xcode.css';
 
-export const App = ({ basePath }: { basePath: string }) => {
+export const App = ({
+  basePath,
+  requestConfig,
+}: {
+  basePath: string;
+  requestConfig?: RequestInit;
+}) => {
   const {
     state,
     selectedStatuses,
@@ -19,7 +25,7 @@ export const App = ({ basePath }: { basePath: string }) => {
     cleanAllDelayed,
     cleanAllFailed,
     cleanAllCompleted,
-  } = useStore(basePath);
+  } = useStore({ basePath, requestConfig });
 
   return (
     <>

@@ -29,7 +29,13 @@ export interface Store {
   setSelectedStatuses: React.Dispatch<React.SetStateAction<SelectedStatuses>>;
 }
 
-export const useStore = (basePath: string): Store => {
+export const useStore = ({
+  basePath,
+  requestConfig,
+}: {
+  basePath: string;
+  requestConfig?: RequestInit;
+}): Store => {
   const [state, setState] = useState({
     data: null,
     loading: true,
@@ -48,10 +54,10 @@ export const useStore = (basePath: string): Store => {
 
   const update = useCallback(
     () =>
-      fetch(`${basePath}/queues/?${qs.encode(selectedStatuses)}`)
+      fetch(`${basePath}/queues/?${qs.encode(selectedStatuses)}`, requestConfig)
         .then(res => (res.ok ? res.json() : Promise.reject(res)))
         .then(data => setState({ data, loading: false })),
-    [basePath, selectedStatuses]
+    [basePath, requestConfig, selectedStatuses]
   );
 
   useEffect(() => {
@@ -75,6 +81,7 @@ export const useStore = (basePath: string): Store => {
       `${basePath}/queues/${encodeURIComponent(queueName)}/${job.id}/promote`,
       {
         method: 'put',
+        ...requestConfig,
       }
     ).then(update);
 
@@ -83,22 +90,26 @@ export const useStore = (basePath: string): Store => {
       `${basePath}/queues/${encodeURIComponent(queueName)}/${job.id}/retry`,
       {
         method: 'put',
+        ...requestConfig,
       }
     ).then(update);
 
   const retryAll = (queueName: string) => () =>
     fetch(`${basePath}/queues/${encodeURIComponent(queueName)}/retry`, {
       method: 'put',
+      ...requestConfig,
     }).then(update);
 
   const cleanAllDelayed = (queueName: string) => () =>
     fetch(`${basePath}/queues/${encodeURIComponent(queueName)}/clean/delayed`, {
       method: 'put',
+      ...requestConfig,
     }).then(update);
 
   const cleanAllFailed = (queueName: string) => () =>
     fetch(`${basePath}/queues/${encodeURIComponent(queueName)}/clean/failed`, {
       method: 'put',
+      ...requestConfig,
     }).then(update);
 
   const cleanAllCompleted = (queueName: string) => () =>
@@ -106,6 +117,7 @@ export const useStore = (basePath: string): Store => {
       `${basePath}/queues/${encodeURIComponent(queueName)}/clean/completed`,
       {
         method: 'put',
+        ...requestConfig,
       }
     ).then(update);
 
