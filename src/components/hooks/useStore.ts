@@ -5,10 +5,12 @@ import { ValidMetrics, AppQueue, AppJob } from 'types';
 
 const interval = 5000;
 
-export interface GetQueues {
+export type GetQueues = {
   stats: Partial<ValidMetrics>;
   queues: AppQueue[];
-}
+} & {
+  [key: string]: AppQueue[];
+};
 
 type State = {
   data: null | GetQueues;

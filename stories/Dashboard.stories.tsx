@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 import { App } from '../src';
 
 export default {
@@ -7,20 +7,28 @@ export default {
 
 // By passing optional props to this story, you can control the props of the component when
 // you consume the story in a test.
+type AppProps = ComponentProps<typeof App>
+
 export const Default = ({
   basePath = "",
-  requestConfig,
-}: Partial<{ basePath: string; requestConfig: RequestInit }>) => (
-  <App basePath={basePath} requestConfig={requestConfig} />
+  ...rest
+}: Partial<AppProps>) => (
+  <App basePath={basePath} {...rest} />
 );
 
 export const DefaultWithAuth = () => (
   <Default
-    basePath=""
     requestConfig={{
       headers: new Headers({
         Authorization: `Bearer asdfasdfasd`,
       }),
     }}
+  />
+);
+
+export const CustomDataKey = () => (
+  <Default
+    basePath="customDataKey"
+    dataKey="data"
   />
 );

@@ -11,9 +11,11 @@ import '../xcode.css';
 export const App = ({
   basePath,
   requestConfig,
+  dataKey = 'queues',
 }: {
   basePath: string;
   requestConfig?: RequestInit;
+  dataKey?: string;
 }) => {
   const {
     state,
@@ -41,7 +43,7 @@ export const App = ({
               <>No stats to display </>
             )}
 
-            {state.data?.queues.map(queue => (
+            {state.data?.[dataKey]?.map(queue => (
               <QueueElement
                 queue={queue}
                 key={queue.name}
